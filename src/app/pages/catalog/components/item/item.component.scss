@@ -72,6 +72,9 @@ p {
   }
   &:nth-child(2) {
     --aspect-ratio: 9/12;
+    &.item__media-item--ratioSquare {
+      --aspect-ratio: 1;
+    }
     max-width: 24rem;
     translate: var(--positionX, calc(-5rem * var(--reverse))) 0;
     margin-block-start: calc(-1 * var(--root-spacing));
@@ -81,9 +84,7 @@ p {
 .item__media-item--front {
   z-index: 1;
 }
-.item__media-item--ratioSquare {
-  --aspect-ratio: 1;
-}
+
 .item__media-item--afterText {
   --positionX: calc((var(--root-spacing) - 100%) * var(--reverse));
 }

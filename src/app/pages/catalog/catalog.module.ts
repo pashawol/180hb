@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { CatalogRoutingModule } from './catalog-routing.module';
 
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    CatalogRoutingModule
-  ]
+  imports: [CommonModule, CatalogRoutingModule],
 })
-export class CatalogModule { }
+export class CatalogModule {}

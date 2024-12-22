@@ -1,6 +1,10 @@
 @if( item(); as item) {
 
-<article class="item" [class]="item.reverse_layout ? 'item--reverse' : ''">
+<article
+  class="item"
+  [class]="item.reverse_layout ? 'item--reverse' : ''"
+  appScrollFadeIn
+>
   <div class="col col--content">
     <div class="item__content" [style]="item.ContentStyle?.join('')">
       @if(item.bgStyle) {
