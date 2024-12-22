@@ -1,0 +1,128 @@
+:host {
+  --root-spacing: 6rem;
+  --reverse: 1;
+  &:nth-child(odd) {
+    // margin-left: var(6rem);
+    .item {
+      margin-right: 0;
+    }
+  }
+}
+.col {
+  flex: 1 0 0%;
+  width: 100%;
+  max-width: 100%;
+}
+h2 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  max-width: 800px;
+}
+p {
+  margin-bottom: 1rem;
+}
+.item {
+  display: flex;
+  // align-items: center;
+  gap: 2rem;
+  max-width: 1100px;
+  margin-inline: auto;
+  position: relative;
+  z-index: 2;
+  margin-bottom: calc(var(--root-spacing) * 3);
+}
+.item__content {
+  padding-bottom: 2rem;
+}
+.item__description {
+  max-width: 800px;
+  margin-left: auto;
+}
+.item__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  height: 100%;
+  max-height: 90%;
+  // max-height: 73%;
+  z-index: -1;
+}
+
+.item__media {
+  position: relative;
+  z-index: 2;
+  --aspect-ratio: 1;
+}
+.item__media-item {
+  width: 100%;
+  position: relative;
+  max-width: 500px;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  aspect-ratio: var(--aspect-ratio);
+  z-index: -1;
+  &:nth-child(1) {
+    max-width: 35rem;
+    z-index: 1;
+  }
+  &:nth-child(2) {
+    --aspect-ratio: 9/12;
+    max-width: 24rem;
+    translate: var(--positionX, calc(-5rem * var(--reverse))) 0;
+    margin-block-start: calc(-1 * var(--root-spacing));
+  }
+}
+
+.item__media-item--front {
+  z-index: 1;
+}
+.item__media-item--ratioSquare {
+  --aspect-ratio: 1;
+}
+.item__media-item--afterText {
+  --positionX: calc((var(--root-spacing) - 100%) * var(--reverse));
+}
+
+.item--reverse {
+  flex-direction: row-reverse;
+  --reverse: -1;
+  .item__media {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .item__bg {
+    right: 0;
+    left: auto;
+    rotate: y -180deg;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: var(--btn-bg, var(--body-color));
+  color: var(--btn-color, #fff);
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+  transition: background-color 0.3s, translate 0.3s;
+  &:hover {
+    --btn-bg: var(--btn-bg-hover, #2a2a2a);
+    --btn-color: var(--btn-color-hover);
+    translate: 0 0.1rem;
+  }
+  &--primary {
+    --btn-bg: var(--primary-color);
+    --btn-bg-hover: var(--primary-color-hover);
+    --btn-color: #fff;
+    --btn-color-hover: #fff;
+  }
+}
