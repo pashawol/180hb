@@ -11,7 +11,7 @@ export const fadeInAnimation = trigger('fadeIn', [
     'hidden',
     style({
       opacity: 0,
-      transform: 'translateY(15%)',
+      transform: 'translateY(25%)',
     })
   ),
   state(
@@ -21,5 +21,5 @@ export const fadeInAnimation = trigger('fadeIn', [
       transform: 'translateY(0)',
     })
   ),
-  transition('hidden => visible', [animate('1s ease-in')]),
+  transition('hidden <=> visible', [animate('.6s ease-in-out')]),
 ]);

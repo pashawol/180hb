@@ -1,6 +1,7 @@
 :host {
-  --root-spacing: 6rem;
+  --root-spacing: 3rem;
   --reverse: 1;
+
   &:nth-child(odd) {
     // margin-left: var(6rem);
     .item {
@@ -23,6 +24,8 @@ p {
 }
 .item {
   display: flex;
+  flex-direction: column;
+
   // align-items: center;
   gap: 2rem;
   max-width: 1100px;
@@ -31,9 +34,7 @@ p {
   z-index: 2;
   margin-bottom: calc(var(--root-spacing) * 3);
 }
-.item__content {
-  padding-bottom: 2rem;
-}
+
 .item__description {
   max-width: 800px;
   margin-left: auto;
@@ -85,25 +86,6 @@ p {
   z-index: 1;
 }
 
-.item__media-item--afterText {
-  --positionX: calc((var(--root-spacing) - 100%) * var(--reverse));
-}
-
-.item--reverse {
-  flex-direction: row-reverse;
-  --reverse: -1;
-  .item__media {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-  }
-  .item__bg {
-    right: 0;
-    left: auto;
-    rotate: y -180deg;
-  }
-}
-
 .btn {
   display: inline-block;
   padding: 1rem 2rem;
@@ -113,7 +95,7 @@ p {
   font-size: 1.2rem;
   cursor: pointer;
   margin-top: 1rem;
-  margin-bottom: 4rem;
+
   transition: background-color 0.3s, translate 0.3s;
   &:hover {
     --btn-bg: var(--btn-bg-hover, #2a2a2a);
@@ -125,5 +107,67 @@ p {
     --btn-bg-hover: var(--primary-color-hover);
     --btn-color: #fff;
     --btn-color-hover: #fff;
+  }
+}
+
+@media (max-width: 768px) {
+  .item__content {
+    --content-sp: 2rem 1rem 0;
+  }
+  .item__bg {
+    min-width: 100%;
+  }
+  .item__media {
+    translate: 2rem 0 !important;
+  }
+  .item--reverse {
+    .item__media {
+      translate: -2rem 0 !important;
+    }
+    .item__media-item:nth-child(2) {
+      margin-left: auto;
+      margin-right: -2rem;
+      translate: 0 0;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .btn {
+    margin-bottom: 4rem;
+  }
+  .item {
+    flex-direction: row;
+  }
+
+  .item__content {
+    padding-bottom: 2rem;
+  }
+  .item--reverse {
+    flex-direction: row-reverse;
+    --reverse: -1;
+    .item__media {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .item__bg {
+      right: 0;
+      left: auto;
+      rotate: y -180deg;
+    }
+  }
+}
+@media (min-width: 992px) {
+  :host {
+    --root-spacing: 6rem;
+  }
+  .item__media-item--afterText {
+    --positionX: calc((var(--root-spacing) - 40%) * var(--reverse));
+  }
+}
+@media (min-width: 1200px) {
+  .item__media-item--afterText {
+    --positionX: calc((var(--root-spacing) - 100%) * var(--reverse));
   }
 }
