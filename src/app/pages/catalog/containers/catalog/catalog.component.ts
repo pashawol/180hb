@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { ItemsListComponent } from '../../components/items-list/items-list.component';
 import { RequestService } from '../../services/request.service';
 import { ItemInterface } from '../../models/item.model';
@@ -11,22 +11,11 @@ import { ItemInterface } from '../../models/item.model';
   standalone: true,
 })
 export class CatalogComponent {
-  items = signal<ItemInterface[]>([]);
-
   requestService = inject(RequestService);
 
-  constructor() {
-    this.loadItems();
-  }
+  items = this.requestService.items;
 
-  private async loadItems() {
-    try {
-      const items = await this.requestService.loadItems();
-      this.items.set(items);
-      // console.log(this.items());
-    } catch (error) {
-      alert('An error occurred while loading items');
-      console.error(error);
-    }
+  constructor() {
+    this.requestService.loadItems();
   }
 }

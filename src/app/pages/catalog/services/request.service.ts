@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 import { ItemInterface } from '../models/item.model';
 import Client from 'storyblok-js-client';
 
@@ -11,14 +11,22 @@ export class RequestService {
     // cv: 1734821510,
   });
 
-  async loadItems(): Promise<any> {
-    const data = await this.sbClient
-      .getStory('180hb', {})
-      .then((res) => res.data);
-    // const data = await this.h
+  #items = signal<ItemInterface[]>([]);
 
-    console.log(data.story.content['body']);
+  items = this.#items.asReadonly();
 
-    return data.story.content['body'];
+  async loadItems(): Promise<ItemInterface[]> {
+    try {
+      const response = await this.sbClient.getStory('180hb', {});
+      const items = response.data.story.content['body'];
+
+      // Обновляем состояние
+      this.#items.set(items);
+
+      return items;
+    } catch (error) {
+      console.error('Error loading items:', error);
+      throw error;
+    }
   }
 }
