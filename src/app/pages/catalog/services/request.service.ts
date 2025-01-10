@@ -20,7 +20,6 @@ export class RequestService {
       const response = await this.sbClient.getStory('180hb', {});
       const items = response.data.story.content['body'];
 
-      // Обновляем состояние
       this.#items.set(items);
 
       return items;
