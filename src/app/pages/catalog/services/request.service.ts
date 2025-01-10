@@ -1,4 +1,4 @@
-import { effect, Injectable, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { ItemInterface } from '../models/item.model';
 import Client from 'storyblok-js-client';
 

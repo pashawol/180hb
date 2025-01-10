@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ItemsListComponent } from '../../components/items-list/items-list.component';
 import { RequestService } from '../../services/request.service';
 import { ItemInterface } from '../../models/item.model';
